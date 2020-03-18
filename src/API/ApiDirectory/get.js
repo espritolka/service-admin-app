@@ -5,7 +5,7 @@ export default class Get {
 
     async getDirectoryByType(type){
         const directory = await this.api.getResource(
-            `/${type}`
+            `/directory/${type}`
         )
         return directory.data
     }
