@@ -8,4 +8,9 @@ export default class Add {
         const directory = await this.api.addResource(`/directory/${type}`, data);
         return directory.data
     }
+
+    async addMaster(data){
+        const master = await this.api.addResource(`masters/master`, data);
+        return master.data
+    }
 }

@@ -10,4 +10,18 @@ export default class Get {
         return directory.data
     }
 
+    async getMasters(){
+        const masters = await this.api.getResource(
+            `/masters`
+        )
+        return masters.data
+    }
+
+    async getMasterById(id){
+        const master = await this.api.getResource(
+            `/masters/master/${id}`
+        )
+        return master.data
+    }
+
 }
