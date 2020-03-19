@@ -24,4 +24,18 @@ export default class Get {
         return master.data
     }
 
+    async getServices(){
+        const masters = await this.api.getResource(
+            `/services`
+        )
+        return masters.data
+    }
+
+    async getServiceById(id){
+        const service = await this.api.getResource(
+            `/services/service/${id}`
+        )
+        return service.data
+    }
+
 }

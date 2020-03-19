@@ -13,4 +13,9 @@ export default class Add {
         const master = await this.api.addResource(`masters/master`, data);
         return master.data
     }
+
+    async addService(data){
+        const service = await this.api.addResource(`services/service`, data);
+        return service.data
+    }
 }

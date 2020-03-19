@@ -18,4 +18,9 @@ export default class Delete {
         const master = await this.api.deleteResource(`/masters/master/${id}`);
         return master.data
     }
+
+    async deleteServiceById(id){
+        const service = await this.api.deleteResource(`/services/service/${id}`);
+        return service.data
+    }
 }

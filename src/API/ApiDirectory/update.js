@@ -13,4 +13,9 @@ export default class Update {
         const master = await this.api.updateResource(`/masters/master/${id}`, data);
         return master.data
     }
+
+    async updateServiceById(id, data){
+        const service = await this.api.updateResource(`/services/service/${id}`, data);
+        return service.data
+    }
 }
