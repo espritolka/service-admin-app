@@ -9,7 +9,8 @@ import Create from '@material-ui/icons/Create';
 import RemoveCircle from '@material-ui/icons/RemoveCircle';
 import Grid from '@material-ui/core/Grid';
 import InputAttribute from '../../Components/InputAttribute'
-import ApiDirectory from '../../API/ApiDirectory'
+import ApiDirectory from '../../API/ApiDirectory';
+import selectOptionsConverter from '../../Methods/'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -34,7 +35,7 @@ const Services = (props) =>{
 
     const getServicesList = () => {
         api.Get.getServices().then((res) => {
-            setServicesList(res)
+            setServicesList(selectOptionsConverter(res))
         })
             .catch((error) => {
                 console.log('getServices error', error)
@@ -115,7 +116,7 @@ const Services = (props) =>{
                             <Grid item xs={12} md={12} lg={12}>
                                 <Title>Добавление услуги</Title>
                             </Grid>
-                            <Grid item xs={5} md={5} lg={4}>
+                            <Grid item xs={5} md={5} lg={5}>
                                 <InputAttribute
                                     name={'newDataName'}
                                     label={'Название услуги'}
@@ -124,7 +125,7 @@ const Services = (props) =>{
                                     onChange={(event) => setNewData({...newData, name: event.target.value})}
                                 />
                             </Grid>
-                            <Grid item xs={5} md={5} lg={4}>
+                            <Grid item xs={5} md={5} lg={5}>
                                 <InputAttribute
                                     name={'newDataPrice'}
                                     label={'Цена'}
@@ -150,7 +151,7 @@ const Services = (props) =>{
                                     Удаление услуги
                              </Title>
                             </Grid>
-                            <Grid item xs={5} md={5} lg={4}>
+                            <Grid item xs={5} md={5} lg={10}>
                                 {servicesList.length > 0 && (<InputAttribute
                                     name={'serviceForDelete'}
                                     label={'Выберите услугу'}
@@ -173,14 +174,14 @@ const Services = (props) =>{
     
                         </Grid>
                     </Grid>
-                    <Grid item xs={12} md={12} lg={6}>
+                    <Grid item xs={12} md={12} lg={12}>
                         <Grid container spacing={5} justify="left" alignItems="center">
                             <Grid item xs={12} md={12} lg={12}>
                                 <Title>
                                     Редактирование 
                              </Title>
                             </Grid>
-                            <Grid item xs={5} md={4} lg={3}>
+                            <Grid item xs={5} md={4} lg={4}>
                                 {servicesList.length > 0 && (<InputAttribute
                                     name={'serviceUpdate'}
                                     label={'Выберите Услугу'}
@@ -191,7 +192,7 @@ const Services = (props) =>{
                                     value={serviceForUpdate}
                                 />)}
                             </Grid>
-                            <Grid item xs={5} md={3} lg={3}>
+                            <Grid item xs={5} md={3} lg={4}>
                                 <InputAttribute
                                     name={'name'}
                                     label={'Новое название'}               

@@ -23,4 +23,9 @@ export default class Delete {
         const service = await this.api.deleteResource(`/services/service/${id}`);
         return service.data
     }
+
+    async deleteScheduleById(id){
+        const shedule = await this.api.deleteResource(`/schedules/schedule/${id}`);
+        return shedule.data
+    }
 }

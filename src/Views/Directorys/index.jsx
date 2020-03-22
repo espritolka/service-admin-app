@@ -6,8 +6,9 @@ import IconButton from '@material-ui/core/IconButton';
 import AddCircle from '@material-ui/icons/AddCircle';
 import RemoveCircle from '@material-ui/icons/RemoveCircle';
 import Grid from '@material-ui/core/Grid';
-import InputAttribute from '../../Components/InputAttribute'
-import ApiDirectory from '../../API/ApiDirectory'
+import InputAttribute from '../../Components/InputAttribute';
+import ApiDirectory from '../../API/ApiDirectory';
+import selectOptionsConverter from '../../Methods/';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -34,12 +35,12 @@ const Directorys = () => {
     }, [])
 
     useEffect(() => {
-        getItemList(itemTypeDelete.value)
+        getItemList(itemTypeDelete.key)
     }, [itemTypeDelete])
 
     const getTypeList = () => {
         api.Get.getDirectoryByType('directory').then((res) => {
-            setTypeList(res)
+            setTypeList(selectOptionsConverter(res))
         })
             .catch((error) => {
                 console.log('getDirectoryByType error', error)
@@ -47,8 +48,8 @@ const Directorys = () => {
     }
 
     const getItemList = (type) => {
-        api.Get.getDirectoryByType(type).then((res) => {
-            setItemList(res)
+        type && api.Get.getDirectoryByType(type).then((res) => {
+            setItemList(selectOptionsConverter(res))
         })
             .catch((error) => {
                 console.log(`getDirectoryByType ${type} error`, error)
@@ -56,12 +57,12 @@ const Directorys = () => {
     }
 
     const handleChangeType = event => {
-        setItemType({ value: event.value, label: event.label })
+        setItemType({ value: event.value, label: event.label , key: event.key})
     };
 
     const handleChangeTypeDelete = event => {
         setItemList([])
-        setItemTypeDelete({value: event.value, label: event.label})
+        setItemTypeDelete({value: event.value, label: event.label, key: event.key})
     }
 
     const handleChangeItemDelete = event => {
@@ -71,7 +72,7 @@ const Directorys = () => {
     const handleButtonDeleteClick = (type, id) => {
        api.Delete.deleteDirectoryById(type,id).then((res)=>{
         setItemList([])
-        setItemDelete({})
+      //  setItemDelete({})
         getTypeList()
            alert('удалено')
        })
@@ -99,7 +100,7 @@ const Directorys = () => {
             setDirectoryName('')
             setDirectoryValue('')
             setItemName('')
-            setItemType('')
+           // setItemType('')
             if (type == 'directory') {
                 setTypeList([])
                 getTypeList()
@@ -142,7 +143,7 @@ const Directorys = () => {
                     <label htmlFor="icon-button-file">
                         <IconButton color="primary" aria-label="upload picture" component="span"
                             onClick={() => handleButtonAddClick('directory',
-                                { value: directoryValue, label: directoryName })}>
+                                { label: directoryName , key: directoryValue})}>
                             <AddCircle />
                         </IconButton>
                     </label>
@@ -179,8 +180,8 @@ const Directorys = () => {
                 <Grid item xs={2} md={1} lg={1}>
                     <label htmlFor="icon-button-file">
                         <IconButton color="primary" aria-label="upload picture" component="span"
-                            onClick={() => handleButtonAddClick(itemType.value,
-                                { label: itemName })}>
+                            onClick={() => handleButtonAddClick(itemType.key,
+                                { label: itemName})}>
                             <AddCircle />
                         </IconButton>
                     </label>

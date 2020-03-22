@@ -7,12 +7,35 @@ import Checkbox from '@material-ui/core/Checkbox'
 import withStyles from "@material-ui/core/styles/withStyles";
 
 import DateFnsUtils from '@date-io/date-fns';
+import moment from "moment-timezone";
+import { createMuiTheme } from "@material-ui/core";
+import { ThemeProvider } from "@material-ui/styles";
 
 import ruLocale from "date-fns/locale/ru";
 import {
     MuiPickersUtilsProvider,
     KeyboardDatePicker,
 } from '@material-ui/pickers';
+
+const materialTheme = createMuiTheme({
+    overrides: {
+        MuiInputBase: {
+            input: {
+                'padding': '6px 0 0px',
+            }
+        },
+        MuiInput: {
+            underline: {
+                "&&:after": {
+                    ' border-bottom': '2px solid #9c27b0'
+                }
+            }
+        },
+
+    }
+});
+
+
 
 
 const customStyles = {
@@ -81,7 +104,8 @@ function InputAttribute(props) {
                                 loadOptions: (inputValue) => loadOptions(inputValue, name),
                                 styles: customStyles,
                                 color: "danger",
-                                isDisabled:disabled
+                                isDisabled:disabled,
+                                ...props
                             }
                         }
                     />
@@ -108,25 +132,31 @@ function InputAttribute(props) {
                 break;
             case 'date':
                 return (
+                    <ThemeProvider theme={materialTheme}>
                     <MuiPickersUtilsProvider utils={DateFnsUtils} locale = {ruLocale}>
                         <KeyboardDatePicker
+                            moment={ moment.tz.setDefault('MSK')}
                             helperText={validate}
                             error={ validate }
                             labelText={label}
                             margin="normal"
-                            id={label}
-                            label={  label}
+                            id={ name }
+                            label={ label}
+                            minDate = {new Date()}
+                            minDateMessage = {"Дата записи не может быть менее ранее сегодняшнего дня"}
                             format="dd.MM.yyyy"
+                            clearLabel="очистить"
+                            cancelLabel="отменить"
                             value={ value }
                             disabled={disabled}
                             onChange={onChange}
+                            className={classes.grid}
                             KeyboardButtonProps={{
                                 'aria-label': 'change date',
                             }}
                         />
-
-
                     </MuiPickersUtilsProvider>
+                    </ThemeProvider>
                 );
                 break;
             default:

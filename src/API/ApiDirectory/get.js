@@ -38,4 +38,18 @@ export default class Get {
         return service.data
     }
 
+    async getSchedules(){
+        const schedules = await this.api.getResource(
+            `/schedules`
+        )
+        return schedules.data
+    }
+
+    async getScheduleById(id){
+        const schedule = await this.api.getResource(
+            `/schedules/shedule/${id}`
+        )
+        return schedule.data
+    }
+
 }

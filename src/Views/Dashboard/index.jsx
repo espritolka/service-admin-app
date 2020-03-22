@@ -97,15 +97,17 @@ const useStyles = makeStyles(theme => ({
   container: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
+    maxWidth: '1850px'
   },
   paper: {
     padding: theme.spacing(2),
     display: 'flex',
     overflow: 'auto',
     flexDirection: 'column',
+    width: '100%'
   },
   fixedHeight: {
-    height: 780,
+    height: 820,
   },
 }));
 

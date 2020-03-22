@@ -18,4 +18,9 @@ export default class Update {
         const service = await this.api.updateResource(`/services/service/${id}`, data);
         return service.data
     }
+
+    async updateScheduleById(id, data){
+        const shedule = await this.api.updateResource(`/shedules/shedule/${id}`, data);
+        return shedule.data
+    }
 }

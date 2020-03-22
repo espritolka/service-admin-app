@@ -8,7 +8,8 @@ import Create from '@material-ui/icons/Create';
 import RemoveCircle from '@material-ui/icons/RemoveCircle';
 import Grid from '@material-ui/core/Grid';
 import InputAttribute from '../../Components/InputAttribute'
-import ApiDirectory from '../../API/ApiDirectory'
+import ApiDirectory from '../../API/ApiDirectory';
+import selectOptionsConverter from '../../Methods/';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -34,7 +35,7 @@ const Masters = () => {
 
     const getMastersList = () => {
         api.Get.getMasters().then((res) => {
-            setMastersList(res)
+            setMastersList(selectOptionsConverter(res))
         })
             .catch((error) => {
                 console.log('getMasterList error', error)
@@ -112,7 +113,7 @@ const Masters = () => {
                         <Grid item xs={12} md={12} lg={12}>
                             <Title> Добавление мастера</Title>
                         </Grid>
-                        <Grid item xs={5} md={5} lg={4}>
+                        <Grid item xs={5} md={5} lg={10}>
                             <InputAttribute
                                 name={'name'}
                                 label={'ФИО'}
@@ -138,7 +139,7 @@ const Masters = () => {
                                 Удаление мастера
                          </Title>
                         </Grid>
-                        <Grid item xs={5} md={5} lg={4}>
+                        <Grid item xs={5} md={5} lg={10}>
                             {mastersList.length > 0 && (<InputAttribute
                                 name={'mastersForDelete'}
                                 label={'Выберите мастера'}
@@ -161,14 +162,14 @@ const Masters = () => {
 
                     </Grid>
                 </Grid>
-                <Grid item xs={12} md={12} lg={6}>
+                <Grid item xs={12} md={12} lg={12}>
                     <Grid container spacing={5} justify="left" alignItems="center">
                         <Grid item xs={12} md={12} lg={12}>
                             <Title>
                                 Редактирование 
                          </Title>
                         </Grid>
-                        <Grid item xs={5} md={5} lg={4}>
+                        <Grid item xs={5} md={5} lg={5}>
                             {mastersList.length > 0 && (<InputAttribute
                                 name={'masterUpdate'}
                                 label={'Выберите мастера'}
@@ -179,7 +180,9 @@ const Masters = () => {
                                 value={masterUpdate}
                             />)}
                         </Grid>
-                        <Grid item xs={5} md={5} lg={4}>
+                        <Grid item xs={0} md={1} lg={1}>
+                            </Grid>
+                        <Grid item xs={5} md={5} lg={5}>
                             <InputAttribute
                                 name={'name'}
                                 label={'Новое значение ФИО'}               
