@@ -19,8 +19,13 @@ export default class Add {
         return service.data
     }
 
-    async addSchedules(data){
-        const schedules = await this.api.addResource(`schedules/schedule`, data);
-        return schedules.data
+    async addSchedule(data){
+        const schedule = await this.api.addResource(`schedules/schedule`, data);
+        return schedule.data
+    }
+
+    async addRegister(data){
+        const register = await this.api.addResource(`registers/register`, data);
+        return register.data
     }
 }

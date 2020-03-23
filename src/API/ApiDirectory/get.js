@@ -52,4 +52,18 @@ export default class Get {
         return schedule.data
     }
 
+    async getRegisters(){
+        const registers = await this.api.getResource(
+            `/registers`
+        )
+        return registers.data
+    }
+
+    async getRegisterById(id){
+        const register = await this.api.getResource(
+            `/registers/register/${id}`
+        )
+        return register.data
+    }
+
 }

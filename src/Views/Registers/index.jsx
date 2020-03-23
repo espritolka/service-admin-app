@@ -1,9 +1,43 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react';
+import ApiDirectory from '../../API/ApiDirectory';
+import RegistersTable from './RegistersTable';
+
 
 const Registers = (props) => {
+    const api = new ApiDirectory();
+    const [data, setData] = useState([])
+
+    useEffect(() => {
+        getData()
+    }, [])
+
+    const getData = () => {
+        api.Get.getRegisters().then((res) => {
+            setData(res)
+        })
+        .catch((error) => {
+            console.log('error in getRegisters')
+        })
+    }
+
+    const handleDeleteItems = (items) => {
+        items.map((item) => {
+            console.log('item id', data[item.dataIndex]._id)
+            api.Delete.deleteRegisterById(data[item.dataIndex]._id).then((res)=>{
+             
+            })
+            .catch((error) => {
+                getData()
+                alert(error.response.data)
+            })
+        })
+    }
 
     return(
-        <div> Записи </div>
+        <RegistersTable
+        data = {data}
+        onDelete = {(items) => handleDeleteItems(items)}
+        /> 
     )
 }
 

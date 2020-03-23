@@ -112,7 +112,7 @@ const SchedulesTable = (props) => {
         filterType: 'checkbox',
         print: false,
         downloadOptions: {
-            filename: `Записи.csv`,
+            filename: `График.csv`,
             separator: ';',
             filterOptions: {
                 useDisplayedColumnsOnly: true,

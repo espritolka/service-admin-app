@@ -44,7 +44,7 @@ const Schedules = (props) => {
     } 
 
     const handleButtonAddClick = () => {
-       api.Add.addSchedules(data).then((res) => {
+       api.Add.addSchedule(data).then((res) => {
            setUpdate(!update)
            setData({date: new Date(), 
             time: [],
