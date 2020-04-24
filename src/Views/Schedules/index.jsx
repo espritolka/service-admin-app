@@ -63,19 +63,6 @@ const Schedules = (props) => {
         setData({...data, master: event})
     }
 
-    const getValueSelect = () => {
-        return new Promise(resolve => {
-            let result = timesList
-            resolve(result);
-        });
-    };
-
-    const getValueSelectMaster = () => {
-        return new Promise(resolve => {
-            let result = mastersList
-            resolve(result);
-        });
-    };
 
     return (
         <div>
@@ -94,28 +81,26 @@ const Schedules = (props) => {
                         onChange={(date)=> setData({...data, date: date})}
                     />
                 </Grid>
-                <Grid item xs={12} md={5} lg={3}>
-                {timesList.length > 0 && (<InputAttribute
+                <Grid item xs={12} md={5} lg={5}>
+                <InputAttribute
                                     name={'time'}
                                     label={'Выберите время'}
                                     type={'select'}
                                     onChange={hendleChangeTime}
                                     selectOptions={timesList}
-                                    loadOptions={(inputValue, name) => getValueSelect(inputValue, name)}
                                     value={data.time}
                                     isMulti={true}
-                                />)}
+                                />
                 </Grid>
                 <Grid item xs={12} md={6} lg={3}>
-                {mastersList.length > 0 && (<InputAttribute
+                <InputAttribute
                                     name={'master'}
                                     label={'Выберите мастрера'}
                                     type={'select'}
                                     onChange={hendleChangeMaster}
                                     selectOptions={mastersList}
-                                    loadOptions={(inputValue, name) => getValueSelectMaster(inputValue, name)}
                                     value={data.master}
-                                />)}
+                                />
                 </Grid>
                 <Grid item xs={12} md={1} lg={1}>
                   <label htmlFor="icon-button-file">

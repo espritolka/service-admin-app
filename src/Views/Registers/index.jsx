@@ -22,7 +22,7 @@ const Registers = (props) => {
 
     const handleDeleteItems = (items) => {
         items.map((item) => {
-            console.log('item id', data[item.dataIndex]._id)
+            
             api.Delete.deleteRegisterById(data[item.dataIndex]._id).then((res)=>{
              
             })

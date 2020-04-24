@@ -10,7 +10,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import customInputStyle from './style/customInputStyle'
 
 
-import AsyncSelect from 'react-select/async';
+import AsyncSelect from 'react-select';
 
 function CustomInput({ ...props }) {
   const {
@@ -21,7 +21,7 @@ function CustomInput({ ...props }) {
     labelProps,
     inputProps,
     error,
-    loadOptions,
+    selectOptions,
     onChange
   } = props;
 
@@ -57,7 +57,7 @@ function CustomInput({ ...props }) {
       <AsyncSelect
         id={id}
         name={id}
-        loadOptions={(inputValue) => loadOptions(inputValue, id)}
+        options = {selectOptions}
         onChange={ onChange }
         defaultOptions
         {...inputProps}

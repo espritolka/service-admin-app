@@ -21,18 +21,45 @@ const materialTheme = createMuiTheme({
     overrides: {
         MuiInputBase: {
             input: {
-                'padding': '6px 0 0px',
+                fontSize: 14,
+                padding : '6px 0 1px',
+                '&:before' : {
+                    padding : '6px 0 1px',
+                },
+            },
+            root: {
+                fontSize: 14,
+                color: 'hsl(0,0%,80%)',
+            },
+            miltiline: {
+                'padding': '6px 0 1px',
             }
         },
         MuiInput: {
+            input: {
+                padding : '6px 0 1px',
+                fontSize: 14,
+                'border-bottom': '1px solid #9c27b0'
+            },
             underline: {
-                "&&:after": {
-                    ' border-bottom': '2px solid #9c27b0'
+                "&:after": {
+                    'border-bottom': '1px solid #9c27b0'
+                },
+                '&:before' : {
+                    'border-bottom' : '1px solid hsl(0,0%,80%)'
+                },
+                '&:hover': {
+                    'border-bottom': '1px solid hsl(0,0%,80%)',
+                    'border-weight': '1px',
+                        }
+                }, 
+                '&.Mui-focused': {
+                   '& .MuiOutlinedInput-notchedOutline' :{
+                      'border-width': '1px'
+                   }
                 }
             }
         },
-
-    }
 });
 
 
@@ -44,14 +71,14 @@ const customStyles = {
         border: '#fff',
         zIndex: 0,
         borderRadius: 'none',
-        borderBottom: '1px dotted hsl(0,0%,80%)',
-        borderStyle: 'dotted',
         fontSize: 14,
         fontFamily: "Roboto, Helvetica, Arial, sans-serif",
         fontWeight: 400,
         lineHeight: 1.42857,
         backgroundColor: 'none',
-        height: 29
+        height: 29,
+        borderBottom: '1px solid hsl(0,0%,80%)',
+        borderStyle: 'solid'
     }),
 };
 
@@ -86,7 +113,7 @@ const styles = {
 function InputAttribute(props) {
 
     const getElemByType = () => {
-        const { name,label, type, disabled, value, loadOptions, onChange, classes, validate } = props;
+        const { name,label, type, disabled, value, loadOptions, onChange, classes, validate, selectOptions } = props;
         switch (type) {
             case 'select':
                 return (
@@ -97,6 +124,7 @@ function InputAttribute(props) {
                         formControlProps={{
                             fullWidth: true,
                         }}
+                        selectOptions = {selectOptions}
                         inputProps={
                             {
                                 onChange: onChange,

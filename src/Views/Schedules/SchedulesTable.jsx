@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import MUIDataTable from "mui-datatables";
 import ApiDirectory from '../../API/ApiDirectory';
-import Typography from '@material-ui/core/Typography'
+import Typography from '@material-ui/core/Typography';
+import formatDistanceToNowStrict from 'date-fns/formatRelative';
+import ruLocale from 'date-fns/locale/ru'
 
 const SchedulesTable = (props) => {
     const api = new ApiDirectory()
@@ -67,7 +69,11 @@ const SchedulesTable = (props) => {
             label: "Дата",
             options: {
                 filter: true,
-                sort: false,
+                sort: true,
+                customBodyRender: (value, tableMeta, updateValue) => {
+                return(<p>{formatDistanceToNowStrict(Date.parse(value), new Date(), {locale: ruLocale, unit: 'day'})}</p>)
+               
+        }
             }
         },
         {
@@ -83,7 +89,7 @@ const SchedulesTable = (props) => {
             label: "Статус",
             options: {
                 filter: true,
-                sort: false,
+                sort: true,
                 download: true,
                     customBodyRender: (value, tableMeta, updateValue) => {
                         if (value) {

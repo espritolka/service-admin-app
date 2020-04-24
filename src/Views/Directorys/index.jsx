@@ -81,20 +81,6 @@ const Directorys = () => {
        })
     }
 
-    const getValueSelect = () => {
-        return new Promise(resolve => {
-            let result = typeList
-            resolve(result);
-        });
-    };
-
-    const getValueItemSelect = () => {
-        return new Promise(resolve => {
-            let result = itemList
-            resolve(result);
-        });
-    };
-
     const handleButtonAddClick = (type, data) => {
         api.Add.addDirectoryByType(type, data).then((res) => {
             setDirectoryName('')
@@ -158,15 +144,14 @@ const Directorys = () => {
                     </Title>
                 </Grid>
                 <Grid item xs={5} md={5} lg={4}>
-                    {typeList.length > 0 && (<InputAttribute
+                    <InputAttribute
                         name={'itemType'}
                         label={'Справочник'}
                         type={'select'}
                         onChange={handleChangeType}
                         selectOptions={typeList}
-                        loadOptions={(inputValue, name) => getValueSelect(inputValue, name)}
                         value={itemType}
-                    />)}
+                    />
                 </Grid>
                 <Grid item xs={5} md={5} lg={4}>
                     <InputAttribute
@@ -197,26 +182,25 @@ const Directorys = () => {
                     </Title>
                 </Grid>
                 <Grid item xs={5} md={5} lg={4}>
-                    {typeList.length > 0 && (<InputAttribute
+                    <InputAttribute
                         name={'itemTypeDelete'}
                         label={'Справочник'}
                         type={'select'}
                         onChange={handleChangeTypeDelete}
                         selectOptions={typeList}
-                        loadOptions={(inputValue, name) => getValueSelect(inputValue, name)}
                         value={itemTypeDelete}
-                    />)}
+                    />
                 </Grid>
                 <Grid item xs={5} md={5} lg={4}>
-                    {itemList.length > 0 && (<InputAttribute
+                    <InputAttribute
                         name={'itemDelete'}
                         label={'Элемент'}
                         type={'select'}
                         onChange={handleChangeItemDelete}
                         selectOptions={itemList}
-                        loadOptions={(inputValue, name) => getValueItemSelect(inputValue, name)}
+                        disabled ={itemList.length < 0}
                         value={itemDelete}
-                    />)}
+                    />
                 </Grid>
                 <Grid item xs={2} md={1} lg={1}>
                     <label htmlFor="icon-button-file">

@@ -85,12 +85,6 @@ const Masters = () => {
         })
      }
 
-    const getValueSelect = () => {
-        return new Promise(resolve => {
-            let result = mastersList
-            resolve(result);
-        });
-    };
 
     const handleButtonAddClick = (data) => {
         api.Add.addMaster(data).then((res) => {
@@ -140,15 +134,14 @@ const Masters = () => {
                          </Title>
                         </Grid>
                         <Grid item xs={5} md={5} lg={10}>
-                            {mastersList.length > 0 && (<InputAttribute
+                            <InputAttribute
                                 name={'mastersForDelete'}
                                 label={'Выберите мастера'}
                                 type={'select'}
                                 onChange={handleChangeMastersForDelete}
                                 selectOptions={mastersList}
-                                loadOptions={(inputValue, name) => getValueSelect(inputValue, name)}
                                 value={mastersForDelete}
-                            />)}
+                            />
                         </Grid>
 
                         <Grid item xs={2} md={1} lg={1}>
@@ -170,15 +163,14 @@ const Masters = () => {
                          </Title>
                         </Grid>
                         <Grid item xs={5} md={5} lg={5}>
-                            {mastersList.length > 0 && (<InputAttribute
+                            <InputAttribute
                                 name={'masterUpdate'}
                                 label={'Выберите мастера'}
                                 type={'select'}
                                 onChange={handleChangeMasterForUpdate}
                                 selectOptions={mastersList}
-                                loadOptions={(inputValue, name) => getValueSelect(inputValue, name)}
                                 value={masterUpdate}
-                            />)}
+                            />
                         </Grid>
                         <Grid item xs={0} md={1} lg={1}>
                             </Grid>

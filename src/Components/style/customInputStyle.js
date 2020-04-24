@@ -103,7 +103,7 @@ const successColor = "#4caf50";
       fontWeight: 400,
       lineHeight: 1.42857,
       color: dangerColor + " !important"
-    }
+    },
   };
   
   export default customInputStyle;

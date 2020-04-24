@@ -100,13 +100,7 @@ const Services = (props) =>{
           console.log(`updateServiceById ${id} error`, error)
          })
       }
- 
-     const getValueSelect = () => {
-         return new Promise(resolve => {
-             let result = servicesList
-             resolve(result);
-         });
-     };
+
 
     return(
             <div>
@@ -152,15 +146,14 @@ const Services = (props) =>{
                              </Title>
                             </Grid>
                             <Grid item xs={5} md={5} lg={10}>
-                                {servicesList.length > 0 && (<InputAttribute
+                                <InputAttribute
                                     name={'serviceForDelete'}
                                     label={'Выберите услугу'}
                                     type={'select'}
                                     onChange={handleChangeServiceForDelete}
                                     selectOptions={servicesList}
-                                    loadOptions={(inputValue, name) => getValueSelect(inputValue, name)}
                                     value={serviceForDelete}
-                                />)}
+                                />
                             </Grid>
     
                             <Grid item xs={2} md={1} lg={1}>
@@ -182,15 +175,14 @@ const Services = (props) =>{
                              </Title>
                             </Grid>
                             <Grid item xs={5} md={4} lg={4}>
-                                {servicesList.length > 0 && (<InputAttribute
+                                <InputAttribute
                                     name={'serviceUpdate'}
                                     label={'Выберите Услугу'}
                                     type={'select'}
                                     onChange={handleChangeServiceForUpdate}
                                     selectOptions={servicesList}
-                                    loadOptions={(inputValue, name) => getValueSelect(inputValue, name)}
                                     value={serviceForUpdate}
-                                />)}
+                                />
                             </Grid>
                             <Grid item xs={5} md={3} lg={4}>
                                 <InputAttribute
